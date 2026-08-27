@@ -8,6 +8,7 @@ import {
   Sparkle, MagnifyingGlass
 } from "@phosphor-icons/react";
 import { useTicketCheckin } from "@/features/tickets/hooks/useTicketDetail";
+import { fetchEventsApi } from "@/features/events/api";
 import { Alert } from "@/components/ui/Alert";
 import { Badge } from "@/components/ui/Badge";
 import { formatDate } from "@/lib/utils";
@@ -34,10 +35,9 @@ export function AdminScanner(): React.JSX.Element {
     async function loadEvents() {
       setIsLoadingEvents(true);
       try {
-        const res = await fetch("/api/events?limit=100", { cache: "no-store" });
-        const json = await res.json();
-        if (json.success && Array.isArray(json.data)) {
-          setEvents(json.data);
+        const res = await fetchEventsApi({ limit: 100 });
+        if (res.success && res.data?.events) {
+          setEvents(res.data.events);
         }
       } catch (err) {
         console.error("Gagal memuat event:", err);
