@@ -1,0 +1,300 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS — Coursera Design System
+   Semua token wajib dari DESIGN.md dan AGENTS.md §5.1
+   ───────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-primary: #0056d2;
+  --color-primary-hover: #0048b0;
+  --color-primary-soft: #e3eeff;
+  --color-primary-xsoft: #f0f6ff;
+  --color-navy: #002761;
+  --color-navy-mid: #003b8f;
+  --color-ink: #0f1114;
+  --color-ink-soft: #1e2229;
+  --color-muted: #5b6780;
+  --color-hairline: #dae1ed;
+  --color-surface: #e8eef7;
+  --color-canvas: #ffffff;
+
+  /* Fonts */
+  --font-sans: "Source Sans Pro", Arial, sans-serif;
+
+  /* Border radius */
+  --radius-none: 0px;
+  --radius-tag: 2px;
+  --radius-sm: 4px;
+  --radius-button: 8px;
+  --radius-card: 16px;
+  --radius-xl: 24px;
+  --radius-chip: 50px;
+
+  /* Spacing */
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-base: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 64px;
+  --spacing-hero: 80px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+   ───────────────────────────────────────────────────────────────────────── */
+.text-display {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.28px;
+}
+
+.text-heading {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.1px;
+}
+
+.text-heading-sm {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.048px;
+}
+
+.text-action {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  letter-spacing: 0.14px;
+}
+
+.text-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-body-sm {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.43;
+}
+
+.text-caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   COMPONENT CLASSES — Button, Card, Chip (sesuai AGENTS.md §5)
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Primary button — voltage blue, 8px radius (DILARANG pill) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 8px 16px;
+  background-color: var(--color-primary);
+  color: var(--color-canvas);
+  border-radius: var(--radius-button);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-primary:hover { background-color: var(--color-primary-hover); }
+.btn-primary:active { transform: translateY(1px); scale: 0.98; }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Secondary button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 8px 16px;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-secondary:hover { background-color: var(--color-surface); }
+.btn-secondary:active { transform: translateY(1px); scale: 0.98; }
+.btn-secondary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Ghost button (link-style) */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+.btn-ghost:hover { color: var(--color-primary-hover); text-decoration: underline; }
+
+/* Card — 16px radius, hairline border */
+.card {
+  background-color: var(--color-canvas);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-hairline);
+  overflow: hidden;
+}
+
+/* Category chip — 50px radius (DILARANG di button utama) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 8px 16px;
+  border-radius: var(--radius-chip);
+  border: 1px solid var(--color-hairline);
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14px;
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  white-space: nowrap;
+}
+.chip:hover, .chip.active {
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* Skill tag — 2px radius inline */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-tag);
+  background-color: var(--color-surface);
+  color: var(--color-navy);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Navy callout card */
+.callout-navy {
+  background-color: var(--color-navy);
+  color: var(--color-canvas);
+  border-radius: var(--radius-card);
+  padding: 32px;
+}
+
+/* Hairline divider */
+.divider {
+  height: 1px;
+  background-color: var(--color-hairline);
+  border: none;
+}
+
+/* Skeleton loading — Pure solid pulse (Zero Gradient Compliance) */
+.skeleton {
+  background-color: var(--color-surface);
+  animation: pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 6px;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Form input */
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 12px 16px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-hairline);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-ink);
+  background-color: var(--color-canvas);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+.input.with-icon-left {
+  padding-left: 48px !important;
+}
+.input::placeholder { color: var(--color-muted); }
+.input.error { border-color: #d30a28; }
+
+
+/* Container — Ultra-wide fluid layout with compact gutters */
+.container-app {
+  width: 100%;
+  max-width: 1680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.75rem; /* 12px mobile */
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .container-app {
+    padding-left: 1rem; /* 16px desktop */
+    padding-right: 1rem;
+  }
+}
+
+
