@@ -5,7 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { Plus, QrCode } from "@phosphor-icons/react";
 
-export function AdminHero(): React.JSX.Element {
+export interface AdminHeroProps {
+  totalEvents?: number;
+  totalAttendees?: number;
+  totalCheckedIn?: number;
+}
+
+export function AdminHero({
+  totalEvents,
+  totalAttendees,
+  totalCheckedIn,
+}: AdminHeroProps = {}): React.JSX.Element {
   return (
     <section className="mb-10 text-left">
       {/* Minimalist & Clean CampusHub Vue Admin Hero with Image */}

@@ -63,11 +63,7 @@ export function AdminEventList(): React.JSX.Element {
   return (
     <div className="w-full pb-12 text-left">
       {/* 1. Specialized Admin Hero Banner */}
-      <AdminHero
-        totalEvents={totalEvents}
-        totalAttendees={totalAttendees}
-        totalCheckedIn={Math.floor(totalAttendees * 0.75)}
-      />
+      <AdminHero />
 
       {/* 2. Management Controls */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 text-left">
