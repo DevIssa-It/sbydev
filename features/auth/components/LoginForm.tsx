@@ -22,10 +22,10 @@ export function LoginForm(): React.JSX.Element {
   const handleQuickFill = (role: "user" | "admin") => {
     if (role === "admin") {
       setEmail("admin@sbydev.id");
-      setPassword("admin123");
+      setPassword("adminpassword123");
     } else {
       setEmail("user@sbydev.id");
-      setPassword("user123");
+      setPassword("userpassword123");
     }
   };
 
