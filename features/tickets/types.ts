@@ -1,36 +1,24 @@
-// ─── TypeScript Types untuk Ticket ────────────────────────────────────────
+// ─── TypeScript Types untuk Ticket (SSOT: Prisma Generated Types) ──────────
+// DILARANG mendefinisikan ulang TicketType secara manual — bisa drift dari schema.
+// WAJIB gunakan Prisma generated types sebagai sumber kebenaran tunggal.
 
-export type TicketStatus = "PENDING" | "CHECKED_IN" | "CANCELLED";
+import type { Ticket, Event, TicketStatus as PrismaTicketStatus } from "@prisma/client";
 
-export interface TicketType {
-  id: string;
-  code: string;
-  userId: string;
-  eventId: string;
-  status: TicketStatus;
-  checkedAt: Date | string | null;
-  createdAt: Date | string;
-  updatedAt: Date | string;
-}
+// Re-export Prisma enum sebagai TicketStatus — auto-sync dengan schema.prisma
+export type TicketStatus = PrismaTicketStatus;
 
-export interface TicketWithRelations extends TicketType {
-  event: {
-    id: string;
-    title: string;
-    description: string;
-    category: string;
-    location: string;
-    date: Date | string;
-    quota: number;
-    registered: number;
-    imageUrl: string | null;
-  };
+/** Type tiket dari Prisma — single source of truth */
+export type TicketType = Ticket;
+
+/** Type tiket dengan relasi user & event (dari query include) */
+export type TicketWithRelations = Ticket & {
+  event: Event;
   user: {
     id: string;
     name: string;
     email: string;
   };
-}
+};
 
 export const TICKET_STATUS_LABEL: Record<TicketStatus, string> = {
   PENDING: "Aktif",

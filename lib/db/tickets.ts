@@ -1,5 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import { generateTicketCode, AppError } from "@/lib/api";
+import { AppError } from "@/lib/api";
+import { generateTicketCode } from "@/lib/api";
+import { ERR } from "@/lib/errors";
 
 /**
  * Register user ke event — menggunakan Prisma transaction untuk atomic quota check.
@@ -16,16 +18,14 @@ export async function registerUserToEvent(userId: string, eventId: string) {
     });
 
     if (!event) {
-      throw new AppError(
-        "Kuota event penuh atau event tidak ditemukan",
-        400,
-        "QUOTA_EXCEEDED"
-      );
+      const err = ERR.QUOTA_EXCEEDED;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     // Validasi tambahan karena SQLite tidak support row-level lock
     if (event.registered >= event.quota) {
-      throw new AppError("Kuota event sudah penuh", 400, "QUOTA_EXCEEDED");
+      const err = ERR.QUOTA_EXCEEDED;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     // 2. Cek duplikasi registrasi
@@ -34,11 +34,8 @@ export async function registerUserToEvent(userId: string, eventId: string) {
     });
 
     if (existing) {
-      throw new AppError(
-        "Kamu sudah terdaftar di event ini",
-        409,
-        "DUPLICATE_REGISTRATION"
-      );
+      const err = ERR.DUPLICATE_REGISTRATION;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     // 3. Buat tiket & increment kuota secara atomic
@@ -88,7 +85,8 @@ export async function checkinTicket(code: string, expectedEventId?: string) {
     });
 
     if (!ticket) {
-      throw new AppError("Tiket tidak ditemukan", 404, "TICKET_NOT_FOUND");
+      const err = ERR.TICKET_NOT_FOUND;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     // Validasi kesesuaian event jika scanner terkunci pada event tertentu
@@ -101,15 +99,13 @@ export async function checkinTicket(code: string, expectedEventId?: string) {
     }
 
     if (ticket.status === "CHECKED_IN") {
-      throw new AppError(
-        "Tiket sudah di-check-in sebelumnya",
-        409,
-        "ALREADY_CHECKED_IN"
-      );
+      const err = ERR.ALREADY_CHECKED_IN;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     if (ticket.status === "CANCELLED") {
-      throw new AppError("Tiket sudah dibatalkan", 400, "TICKET_CANCELLED");
+      const err = ERR.TICKET_CANCELLED;
+      throw new AppError(err.message, err.status, err.code);
     }
 
     return tx.ticket.update({

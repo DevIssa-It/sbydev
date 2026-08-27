@@ -6,11 +6,11 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Seeding database...");
 
-  // 1. Admin User (Password: admin123) - Cost 12 per AGENTS.md §6.1
-  const adminPassword = await bcrypt.hash("admin123", 12);
+  // 1. Admin User — Password sesuai dokumentasi assessment
+  const adminPassword = await bcrypt.hash("adminpassword123", 12);
   const admin = await prisma.user.upsert({
     where: { email: "admin@sbydev.id" },
-    update: {},
+    update: { password: adminPassword },
     create: {
       name: "Admin SurabayaDev",
       email: "admin@sbydev.id",
@@ -18,13 +18,13 @@ async function main() {
       role: "ADMIN",
     },
   });
-  console.log(`✅ Admin ready: ${admin.email}`);
+  console.log(`[OK] Admin ready: ${admin.email}`);
 
-  // 2. Regular User (Password: user123)
-  const userPassword = await bcrypt.hash("user123", 12);
+  // 2. Regular User — Password sesuai dokumentasi assessment
+  const userPassword = await bcrypt.hash("userpassword123", 12);
   const user = await prisma.user.upsert({
     where: { email: "user@sbydev.id" },
-    update: {},
+    update: { password: userPassword },
     create: {
       name: "Budi Santoso",
       email: "user@sbydev.id",
@@ -32,7 +32,7 @@ async function main() {
       role: "USER",
     },
   });
-  console.log(`✅ User ready: ${user.email}`);
+  console.log(`[OK] User ready: ${user.email}`);
 
   // 3. Sample Events
   const events = [
@@ -114,8 +114,8 @@ async function main() {
 
   console.log("\nDatabase seed selesai!");
   console.log("Credentials Default:");
-  console.log("  Admin : admin@sbydev.id / admin123");
-  console.log("  User  : user@sbydev.id  / user123\n");
+  console.log("  Admin : admin@sbydev.id / adminpassword123");
+  console.log("  User  : user@sbydev.id  / userpassword123\n");
 }
 
 main()
