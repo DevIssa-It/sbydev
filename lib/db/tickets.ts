@@ -79,13 +79,25 @@ export async function getTicketByCode(code: string) {
   });
 }
 
-/** Check-in tiket — atomic status update untuk mencegah duplicate check-in */
-export async function checkinTicket(code: string) {
+/** Check-in tiket — atomic status update untuk mencegah duplicate check-in & event mismatch */
+export async function checkinTicket(code: string, expectedEventId?: string) {
   return prisma.$transaction(async (tx) => {
-    const ticket = await tx.ticket.findUnique({ where: { code } });
+    const ticket = await tx.ticket.findUnique({
+      where: { code },
+      include: { event: true },
+    });
 
     if (!ticket) {
       throw new AppError("Tiket tidak ditemukan", 404, "TICKET_NOT_FOUND");
+    }
+
+    // Validasi kesesuaian event jika scanner terkunci pada event tertentu
+    if (expectedEventId && ticket.eventId !== expectedEventId) {
+      throw new AppError(
+        `Tiket ini milik event "${ticket.event.title}", bukan event yang sedang dibuka di meja scanner saat ini.`,
+        400,
+        "EVENT_MISMATCH"
+      );
     }
 
     if (ticket.status === "CHECKED_IN") {

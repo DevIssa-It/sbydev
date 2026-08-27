@@ -38,10 +38,11 @@ export async function fetchTicketByCodeApi(code: string): Promise<TicketDetailAp
 }
 
 /** Check-in tiket (Admin/Panitia only) */
-export async function checkinTicketApi(code: string): Promise<CheckinApiResponse> {
+export async function checkinTicketApi(code: string, eventId?: string): Promise<CheckinApiResponse> {
   const res = await fetch(`/api/tickets/${code}/checkin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ eventId }),
   });
   return res.json();
 }

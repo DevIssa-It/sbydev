@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { CalendarBlank, MapPin, Users, PencilSimple, Trash } from "@phosphor-icons/react";
+import { CalendarBlank, MapPin, Users, PencilSimple, Trash, QrCode } from "@phosphor-icons/react";
 import type { EventType } from "@/features/events";
 import { formatDateShort } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
@@ -79,6 +79,14 @@ export function AdminEventCard({ event, onDelete }: AdminEventCardProps): React.
           </Link>
 
           <Link
+            href={`/admin/scanner?eventId=${event.id}`}
+            className="btn-secondary h-9 px-2.5 text-xs font-bold text-[var(--color-primary)] hover:bg-[var(--color-surface)] border-[var(--color-hairline)] justify-center rounded-xl no-underline inline-flex items-center"
+            title="Buka Meja Scanner untuk Acara Ini"
+          >
+            <QrCode size={16} weight="bold" />
+          </Link>
+
+          <Link
             href={`/admin/events/${event.id}`}
             className="btn-secondary h-9 px-3 text-xs font-bold justify-center no-underline gap-1.5 rounded-xl"
             title="Edit Detail Event"
@@ -90,7 +98,7 @@ export function AdminEventCard({ event, onDelete }: AdminEventCardProps): React.
           <button
             type="button"
             onClick={() => onDelete(event.id)}
-            className="btn-secondary h-9 px-2.5 text-xs font-bold text-[#d30a28] hover:bg-red-50 border-red-200 justify-center rounded-xl"
+            className="btn-secondary h-9 px-2.5 text-xs font-bold text-[var(--color-danger)] hover:bg-red-50 border-red-200 justify-center rounded-xl"
             title="Hapus Event"
           >
             <Trash size={15} />

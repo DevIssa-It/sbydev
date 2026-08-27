@@ -39,11 +39,11 @@ export function useTicketCheckin() {
   const [error, setError] = useState<string | null>(null);
   const [lastCheckedTicket, setLastCheckedTicket] = useState<TicketWithRelations | null>(null);
 
-  const performCheckin = async (code: string) => {
+  const performCheckin = async (code: string, eventId?: string) => {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await checkinTicketApi(code);
+      const res = await checkinTicketApi(code, eventId);
       if (res.success && res.data) {
         setLastCheckedTicket(res.data);
         return { success: true, ticket: res.data };

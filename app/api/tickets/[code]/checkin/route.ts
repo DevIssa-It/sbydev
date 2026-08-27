@@ -14,7 +14,16 @@ export const POST = withErrorHandler(
     if (error) return error;
 
     const { code } = await (context as RouteContext).params;
-    const ticket = await checkinTicket(code);
+    
+    let eventId: string | undefined;
+    try {
+      const body = await request.json();
+      eventId = body?.eventId;
+    } catch {
+      // Body is optional
+    }
+
+    const ticket = await checkinTicket(code, eventId);
     return successResponse(ticket);
   }
 );
