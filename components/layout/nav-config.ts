@@ -13,12 +13,10 @@ export const USER_NAV_LINKS: NavLinkItem[] = [
   { label: "Komunitas", href: "/#community", sectionId: "community" },
   { label: "FAQ", href: "/#faq", sectionId: "faq" },
   { label: "Tiket Saya", href: "/tickets", authOnly: true },
-  { label: "Panel Admin", href: "/admin", adminOnly: true },
 ];
 
 export const ADMIN_NAV_LINKS: NavLinkItem[] = [
   { label: "Konsol Admin", href: "/admin" },
   { label: "Buat Acara", href: "/admin/events/new" },
   { label: "Scanner Check-In", href: "/admin/scanner" },
-  { label: "Katalog Publik", href: "/" },
 ];
