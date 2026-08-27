@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  tickets   Ticket[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  location    String
+  date        DateTime
+  quota       Int
+  registered  Int      @default(0)
+  imageUrl    String?
+  tickets     Ticket[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Ticket {
+  id        String       @id @default(cuid())
+  code      String       @unique
+  userId    String
+  eventId   String
+  status    TicketStatus @default(PENDING)
+  checkedAt DateTime?
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event     Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@unique([userId, eventId]) // prevent duplicate registration per event
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum TicketStatus {
+  PENDING
+  CHECKED_IN
+  CANCELLED
+}

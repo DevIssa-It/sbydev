@@ -1,0 +1,19 @@
+<svg width="220" height="40" viewBox="0 0 220 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left Bracket < -->
+  <path d="M10 11L4 20L10 29" stroke="#0F1114" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Center Green Tugu Pahlawan Monument -->
+  <path d="M20 5.5L24 11V29.5L20 34.5L16 29.5V11L20 5.5Z" fill="#16A34A"/>
+  <!-- Right Bracket > -->
+  <path d="M30 11L36 20L30 29" stroke="#0F1114" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text: SurabayaDev -->
+  <text x="44" y="27" font-family="'Source Sans Pro', Arial, sans-serif" font-size="22" fill="#0F1114">
+    Surabaya<tspan font-weight="800">Dev</tspan>
+  </text>
+  
+  <!-- Green Slanted Stripes ///// -->
+  <path d="M182 28L188 12" stroke="#16A34A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M188 28L194 12" stroke="#16A34A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M194 28L200 12" stroke="#16A34A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M200 28L206 12" stroke="#16A34A" stroke-width="3" stroke-linecap="round"/>
+</svg>
