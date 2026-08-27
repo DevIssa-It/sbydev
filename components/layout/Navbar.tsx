@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import {
-  Sparkle, SignOut, List, X, IdentificationCard, EnvelopeSimple,
+  SignOut, List, X, IdentificationCard, EnvelopeSimple,
   PhoneCall, PencilSimple
 } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "motion/react";
@@ -19,10 +19,12 @@ export function Navbar(): React.JSX.Element {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isAdmin = session?.user?.role === "ADMIN";
   const isAdminRoute = pathname?.startsWith("/admin");
+  const isTicketsRoute = pathname?.startsWith("/tickets");
 
   const userName = session?.user?.name || "Member SurabayaDev";
   const userEmail = session?.user?.email || "user@sbydev.id";
@@ -38,6 +40,41 @@ export function Navbar(): React.JSX.Element {
 
   // CampusHub Theme logic: Solid Deep Navy on Admin routes, Solid White on Public routes
   const isDarkNav = isAdminRoute;
+
+  // Active section scroll spy listener on home page
+  useEffect(() => {
+    if (pathname !== "/" || isAdminRoute) {
+      return;
+    }
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 120; // 120px offset for sticky navbar
+      const sections = [
+        { id: "faq", name: "faq" },
+        { id: "community", name: "community" },
+        { id: "how-it-works", name: "how-it-works" },
+        { id: "daftar-event", name: "daftar-event" },
+      ];
+
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPos >= top) {
+            setActiveSection(section.name);
+            return;
+          }
+        }
+      }
+
+      setActiveSection("home");
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname, isAdminRoute]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -60,8 +97,24 @@ export function Navbar(): React.JSX.Element {
     }
   };
 
+  const scrollToSection = (id: string) => {
+    setActiveSection(id);
+    setMobileOpen(false);
+    if (pathname === "/") {
+      if (id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const el = document.getElementById(id);
+        if (el) {
+          const offsetTop = el.offsetTop - 80;
+          window.scrollTo({ top: offsetTop, behavior: "smooth" });
+        }
+      }
+    }
+  };
+
   const navItemClass = (isActive: boolean) => `
-    relative py-2 text-[17px] font-semibold transition-all duration-200 group no-underline inline-block
+    relative py-2 text-[16px] xl:text-[17px] font-semibold transition-all duration-200 group no-underline inline-block cursor-pointer
     ${
       isActive
         ? isDarkNav
@@ -98,11 +151,11 @@ export function Navbar(): React.JSX.Element {
       >
         <div className="container-app">
           <div className="flex items-center justify-between h-[76px] gap-6">
-            {/* 1. Brand Logo (DevSphere) */}
+            {/* 1. Brand Logo */}
             <BrandLogo isDark={isDarkNav} href={isAdmin ? "/admin" : "/"} />
 
-            {/* 2. Navigation Center with Color Shift & Animated Bottom Indicator */}
-            <div className="hidden lg:flex items-center space-x-7 xl:space-x-9">
+            {/* 2. Navigation Center with Reactive Section Highlighting */}
+            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {isAdminRoute ? (
                 <>
                   <Link href="/admin" className={navItemClass(pathname === "/admin")}>
@@ -127,35 +180,58 @@ export function Navbar(): React.JSX.Element {
                 </>
               ) : (
                 <>
-                  <Link href="/" className={navItemClass(pathname === "/" && !pathname.includes("#"))}>
+                  <Link
+                    href="/"
+                    onClick={() => scrollToSection("home")}
+                    className={navItemClass(pathname === "/" && activeSection === "home")}
+                  >
                     <span>Home</span>
-                    <span className={indicatorClass(pathname === "/" && !pathname.includes("#"))} />
+                    <span className={indicatorClass(pathname === "/" && activeSection === "home")} />
                   </Link>
 
-                  <Link href="/#daftar-event" className={navItemClass(false)}>
+                  <Link
+                    href="/#daftar-event"
+                    onClick={() => scrollToSection("daftar-event")}
+                    className={navItemClass(pathname === "/" && activeSection === "daftar-event")}
+                  >
                     <span>Katalog Event</span>
-                    <span className={indicatorClass(false)} />
+                    <span className={indicatorClass(pathname === "/" && activeSection === "daftar-event")} />
                   </Link>
 
-                  <Link href="/#how-it-works" className={navItemClass(false)}>
+                  <Link
+                    href="/#how-it-works"
+                    onClick={() => scrollToSection("how-it-works")}
+                    className={navItemClass(pathname === "/" && activeSection === "how-it-works")}
+                  >
                     <span>Cara Kerja</span>
-                    <span className={indicatorClass(false)} />
+                    <span className={indicatorClass(pathname === "/" && activeSection === "how-it-works")} />
                   </Link>
 
-                  <Link href="/#community" className={navItemClass(false)}>
+                  <Link
+                    href="/#community"
+                    onClick={() => scrollToSection("community")}
+                    className={navItemClass(pathname === "/" && activeSection === "community")}
+                  >
                     <span>Komunitas</span>
-                    <span className={indicatorClass(false)} />
+                    <span className={indicatorClass(pathname === "/" && activeSection === "community")} />
                   </Link>
 
-                  <Link href="/#faq" className={navItemClass(false)}>
+                  <Link
+                    href="/#faq"
+                    onClick={() => scrollToSection("faq")}
+                    className={navItemClass(pathname === "/" && activeSection === "faq")}
+                  >
                     <span>FAQ</span>
-                    <span className={indicatorClass(false)} />
+                    <span className={indicatorClass(pathname === "/" && activeSection === "faq")} />
                   </Link>
 
                   {session && (
-                    <Link href="/tickets" className={navItemClass(pathname?.startsWith("/tickets") || false)}>
+                    <Link
+                      href="/tickets"
+                      className={navItemClass(isTicketsRoute)}
+                    >
                       <span>Tiket Saya</span>
-                      <span className={indicatorClass(pathname?.startsWith("/tickets") || false)} />
+                      <span className={indicatorClass(isTicketsRoute)} />
                     </Link>
                   )}
 
@@ -188,7 +264,7 @@ export function Navbar(): React.JSX.Element {
                     {userInitial}
                   </button>
 
-                  {/* Wide Profile Dropdown Card (Expanded to 440px Width) */}
+                  {/* Wide Profile Dropdown Card */}
                   <AnimatePresence>
                     {dropdownOpen && (
                       <motion.div
@@ -201,7 +277,6 @@ export function Navbar(): React.JSX.Element {
                         {/* Top Header Row */}
                         <div className="flex items-center justify-between gap-4 mb-4 text-left">
                           <div className="flex items-center gap-3.5 text-left">
-                            {/* Inner Circle Avatar */}
                             <div className="w-14 h-14 rounded-full bg-[#93c5fd] text-[#002761] font-bold text-2xl flex items-center justify-center flex-shrink-0 shadow-inner">
                               {userInitial.slice(0, 1)}
                             </div>
@@ -215,7 +290,6 @@ export function Navbar(): React.JSX.Element {
                             </div>
                           </div>
 
-                          {/* Top Right Edit / Action Icon */}
                           <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center text-white/90 cursor-pointer hover:bg-white/20 transition-colors flex-shrink-0">
                             <PencilSimple size={20} weight="bold" />
                           </div>
@@ -223,7 +297,6 @@ export function Navbar(): React.JSX.Element {
 
                         {/* Middle Light Surface Card Container */}
                         <div className="bg-[#e8eef7] text-[var(--color-ink)] rounded-2xl p-5 flex flex-col gap-4 my-3 text-left">
-                          {/* Row 1: ID Code */}
                           <div className="flex items-center gap-3.5 text-left">
                             <IdentificationCard size={24} color="var(--color-primary)" weight="bold" className="flex-shrink-0" />
                             <span className="font-mono text-sm font-extrabold text-[var(--color-ink)] tracking-wider">
@@ -231,7 +304,6 @@ export function Navbar(): React.JSX.Element {
                             </span>
                           </div>
 
-                          {/* Row 2: Email */}
                           <div className="flex items-center gap-3.5 text-left">
                             <EnvelopeSimple size={24} color="var(--color-primary)" weight="bold" className="flex-shrink-0" />
                             <span className="text-sm font-medium text-[var(--color-ink)] truncate">
@@ -239,7 +311,6 @@ export function Navbar(): React.JSX.Element {
                             </span>
                           </div>
 
-                          {/* Row 3: Role / Contact */}
                           <div className="flex items-center gap-3.5 text-left">
                             <PhoneCall size={24} color="var(--color-primary)" weight="bold" className="flex-shrink-0" />
                             <span className="text-sm font-medium text-[var(--color-ink)]">
@@ -349,35 +420,35 @@ export function Navbar(): React.JSX.Element {
                   <>
                     <Link
                       href="/"
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => scrollToSection("home")}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
                       Home
                     </Link>
                     <Link
                       href="/#daftar-event"
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => scrollToSection("daftar-event")}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
                       Katalog Event
                     </Link>
                     <Link
                       href="/#how-it-works"
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => scrollToSection("how-it-works")}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
                       Cara Kerja
                     </Link>
                     <Link
                       href="/#community"
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => scrollToSection("community")}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
                       Komunitas
                     </Link>
                     <Link
                       href="/#faq"
-                      onClick={() => setMobileOpen(false)}
+                      onClick={() => scrollToSection("faq")}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
                       FAQ
