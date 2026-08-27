@@ -33,7 +33,7 @@ export function BrandLogo({
           "w-10 h-10 rounded-[10px] flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 border flex-shrink-0",
           isDark
             ? "bg-white/10 border-white/20 text-white"
-            : "bg-[#002761] border-transparent text-white"
+            : "bg-[#0f172a] border-transparent text-white"
         )}
       >
         <svg
@@ -90,8 +90,8 @@ export function BrandLogo({
             className={cn(
               "text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-[6px] shadow-2xs font-mono",
               isDark
-                ? "bg-[#0056d2] text-white border border-blue-400/30"
-                : "bg-[#002761] text-white"
+                ? "bg-[#16a34a] text-white border border-green-400/30"
+                : "bg-[#16a34a] text-white"
             )}
           >
             EVENTS

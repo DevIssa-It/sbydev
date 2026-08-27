@@ -19,7 +19,7 @@ export function AdminHero({
   return (
     <section className="mb-10 text-left">
       {/* Minimalist & Clean CampusHub Vue Admin Hero with Image */}
-      <div className="bg-[#002761] rounded-2xl px-6 sm:px-10 lg:px-12 py-10 sm:py-12 text-white shadow-sm overflow-hidden">
+      <div className="bg-[#0f172a] rounded-2xl px-6 sm:px-10 lg:px-12 py-10 sm:py-12 text-white shadow-sm overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
           {/* Left Text Column (7 cols) */}
           <div className="lg:col-span-7 flex flex-col text-left">
@@ -34,7 +34,7 @@ export function AdminHero({
             <div className="flex items-center gap-3.5 flex-wrap text-left">
               <Link
                 href="/admin/events/new"
-                className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2 rounded-[10px] bg-[#0056d2] hover:bg-[#0048b0] text-white transition-all no-underline shadow-sm whitespace-nowrap"
+                className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold inline-flex items-center justify-center gap-2 rounded-[10px] bg-[#16a34a] hover:bg-[#15803d] text-white transition-all no-underline shadow-sm whitespace-nowrap"
               >
                 <Plus size={18} weight="bold" />
                 <span>Buat Sekarang</span>

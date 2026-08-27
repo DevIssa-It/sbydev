@@ -38,7 +38,7 @@ export function Navbar(): React.JSX.Element {
   // Member ID formatting
   const memberCode = isAdmin ? "EMP-0001" : `EMP-${(session?.user?.id || "001").slice(-4).toUpperCase()}`;
 
-  // CampusHub Theme logic: Solid Deep Navy on Admin routes, Solid White on Public routes
+  // Solid Tech Slate on Admin routes, Solid White on Public routes
   const isDarkNav = isAdminRoute;
 
   // Active section scroll spy listener on home page
@@ -131,7 +131,7 @@ export function Navbar(): React.JSX.Element {
     ${
       isActive
         ? isDarkNav
-          ? "w-full bg-[#38bdf8]"
+          ? "w-full bg-[#22c55e]"
           : "w-full bg-[var(--color-primary)]"
         : isDarkNav
         ? "w-0 group-hover:w-full bg-white/70"
@@ -145,7 +145,7 @@ export function Navbar(): React.JSX.Element {
         aria-label="Navigasi utama"
         className={`sticky top-0 z-40 transition-colors duration-200 ${
           isDarkNav
-            ? "bg-[#002761] text-white border-b border-white/10"
+            ? "bg-[#0f172a] text-white border-b border-white/10"
             : "bg-white text-[var(--color-ink)] border-b border-[var(--color-hairline)]"
         }`}
       >
@@ -257,8 +257,8 @@ export function Navbar(): React.JSX.Element {
                     aria-label="Buka Menu Akun"
                     className={`w-11 h-11 rounded-full font-bold text-base flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 shadow-sm ring-2 ${
                       isDarkNav
-                        ? "bg-white text-[#002761] ring-white/40 hover:ring-white"
-                        : "bg-[#002761] text-white ring-[var(--color-primary)]/25 hover:ring-[var(--color-primary)]"
+                        ? "bg-white text-[#0f172a] ring-white/40 hover:ring-white"
+                        : "bg-[#0f172a] text-white ring-[var(--color-primary)]/25 hover:ring-[var(--color-primary)]"
                     }`}
                   >
                     {userInitial}
@@ -272,12 +272,12 @@ export function Navbar(): React.JSX.Element {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.96, y: 10 }}
                         transition={{ duration: 0.18, ease: "easeOut" }}
-                        className="absolute right-0 mt-3 w-[420px] sm:w-[450px] bg-[#002761] text-white rounded-2xl shadow-2xl p-6 z-50 text-left border border-white/15 overflow-hidden"
+                        className="absolute right-0 mt-3 w-[420px] sm:w-[450px] bg-[#0f172a] text-white rounded-2xl shadow-2xl p-6 z-50 text-left border border-white/15 overflow-hidden"
                       >
                         {/* Top Header Row */}
                         <div className="flex items-center justify-between gap-4 mb-4 text-left">
                           <div className="flex items-center gap-3.5 text-left">
-                            <div className="w-14 h-14 rounded-full bg-[#93c5fd] text-[#002761] font-bold text-2xl flex items-center justify-center flex-shrink-0 shadow-inner">
+                            <div className="w-14 h-14 rounded-full bg-[#bbf7d0] text-[#065f46] font-bold text-2xl flex items-center justify-center flex-shrink-0 shadow-inner">
                               {userInitial.slice(0, 1)}
                             </div>
                             <div className="flex flex-col text-left">
@@ -296,7 +296,7 @@ export function Navbar(): React.JSX.Element {
                         </div>
 
                         {/* Middle Light Surface Card Container */}
-                        <div className="bg-[#e8eef7] text-[var(--color-ink)] rounded-2xl p-5 flex flex-col gap-4 my-3 text-left">
+                        <div className="bg-[#f0fdf4] text-[var(--color-ink)] rounded-2xl p-5 flex flex-col gap-4 my-3 text-left border border-green-200/50">
                           <div className="flex items-center gap-3.5 text-left">
                             <IdentificationCard size={24} color="var(--color-primary)" weight="bold" className="flex-shrink-0" />
                             <span className="font-mono text-sm font-extrabold text-[var(--color-ink)] tracking-wider">
@@ -339,7 +339,7 @@ export function Navbar(): React.JSX.Element {
                 <div className="flex items-center gap-3">
                   <Link
                     href="/login"
-                    className="h-11 px-6 text-base font-semibold rounded-[10px] bg-[#0056d2] hover:bg-[#0048b0] text-white inline-flex items-center justify-center no-underline transition-all hover:scale-105 shadow-sm"
+                    className="h-11 px-6 text-base font-semibold rounded-[10px] bg-[#16a34a] hover:bg-[#15803d] text-white inline-flex items-center justify-center no-underline transition-all hover:scale-105 shadow-sm"
                   >
                     Login
                   </Link>
@@ -348,7 +348,7 @@ export function Navbar(): React.JSX.Element {
                     className={`h-11 px-6 text-base font-semibold rounded-[10px] border-2 inline-flex items-center justify-center no-underline transition-all hover:scale-105 ${
                       isDarkNav
                         ? "border-white/80 text-white hover:bg-white/10"
-                        : "border-[#0056d2] text-[#0056d2] hover:bg-[#e8eef7]"
+                        : "border-[#16a34a] text-[#16a34a] hover:bg-[#f0fdf4]"
                     }`}
                   >
                     Sign Up
@@ -381,7 +381,7 @@ export function Navbar(): React.JSX.Element {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
               className={`lg:hidden border-t px-5 py-4 overflow-hidden text-left ${
-                isDarkNav ? "bg-[#002761] border-white/10 text-white" : "bg-white border-[var(--color-hairline)]"
+                isDarkNav ? "bg-[#0f172a] border-white/10 text-white" : "bg-white border-[var(--color-hairline)]"
               }`}
             >
               <div className="flex flex-col space-y-3 text-left">
@@ -479,12 +479,12 @@ export function Navbar(): React.JSX.Element {
                   {session ? (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 text-left">
-                        <div className={`w-10 h-10 rounded-full text-sm font-bold flex items-center justify-center ${isDarkNav ? "bg-white text-[#002761]" : "bg-[#002761] text-white"}`}>
+                        <div className={`w-10 h-10 rounded-full text-sm font-bold flex items-center justify-center ${isDarkNav ? "bg-white text-[#0f172a]" : "bg-[#0f172a] text-white"}`}>
                           {userInitial}
                         </div>
                         <div className="text-left">
                           <div className="text-sm font-bold">{session.user?.name}</div>
-                          <div className={`text-xs uppercase font-semibold ${isDarkNav ? "text-[#93c5fd]" : "text-[var(--color-primary)]"}`}>
+                          <div className="text-xs uppercase font-semibold text-[var(--color-primary)]">
                             {isAdmin ? "Admin Panitia" : "Member Peserta"}
                           </div>
                         </div>
@@ -540,7 +540,7 @@ export function Navbar(): React.JSX.Element {
             <button
               type="button"
               onClick={() => setShowLogoutModal(false)}
-              className="h-12 w-full rounded-[10px] bg-[#0056d2] hover:bg-[#0048b0] text-white font-semibold text-base transition-all shadow-sm cursor-pointer"
+              className="h-12 w-full rounded-[10px] bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-base transition-all shadow-sm cursor-pointer"
             >
               Kembali
             </button>
@@ -548,7 +548,7 @@ export function Navbar(): React.JSX.Element {
               type="button"
               onClick={handleLogout}
               disabled={isLoggingOut}
-              className="h-12 w-full rounded-[10px] bg-transparent border-2 border-[#0056d2] text-[var(--color-ink)] hover:bg-red-50 hover:border-red-500 hover:text-red-600 font-semibold text-base transition-all cursor-pointer"
+              className="h-12 w-full rounded-[10px] bg-transparent border-2 border-[#16a34a] text-[var(--color-ink)] hover:bg-red-50 hover:border-red-500 hover:text-red-600 font-semibold text-base transition-all cursor-pointer"
             >
               {isLoggingOut ? "Memproses Logout..." : "Logout"}
             </button>

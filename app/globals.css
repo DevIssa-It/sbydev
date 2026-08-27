@@ -5,18 +5,18 @@
    Semua token wajib dari DESIGN.md dan AGENTS.md §5.1
    ───────────────────────────────────────────────────────────────────────── */
 @theme {
-  /* Colors */
-  --color-primary: #0056d2;
-  --color-primary-hover: #0048b0;
-  --color-primary-soft: #e3eeff;
-  --color-primary-xsoft: #f0f6ff;
-  --color-navy: #002761;
-  --color-navy-mid: #003b8f;
+  /* Colors — SurabayaDev Official Emerald & Slate Palette */
+  --color-primary: #16a34a;
+  --color-primary-hover: #15803d;
+  --color-primary-soft: #dcfce7;
+  --color-primary-xsoft: #f0fdf4;
+  --color-navy: #0f172a;
+  --color-navy-mid: #1e293b;
   --color-ink: #0f1114;
   --color-ink-soft: #1e2229;
-  --color-muted: #5b6780;
-  --color-hairline: #dae1ed;
-  --color-surface: #e8eef7;
+  --color-muted: #64748b;
+  --color-hairline: #e2e8f0;
+  --color-surface: #f0fdf4;
   --color-canvas: #ffffff;
 
   /* Fonts */

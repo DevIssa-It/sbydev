@@ -37,7 +37,7 @@ export function EventHero(): React.JSX.Element {
               className="lg:col-span-7 flex flex-col justify-center"
             >
               {/* Top Eyebrow Tag */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold mb-4 text-[#b0e5fb] border border-white/20 w-fit">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold mb-4 text-[#86efac] border border-white/20 w-fit">
                 <Sparkle size={14} weight="fill" />
                 <span>Komunitas Developer Surabaya</span>
               </div>

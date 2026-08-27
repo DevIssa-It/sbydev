@@ -42,7 +42,7 @@ export const TICKET_STATUS_COLOR: Record<
   TicketStatus,
   { bg: string; text: string }
 > = {
-  PENDING: { bg: "#e3eeff", text: "#0056d2" },
-  CHECKED_IN: { bg: "#dcfce7", text: "#166534" },
+  PENDING: { bg: "#dcfce7", text: "#15803d" },
+  CHECKED_IN: { bg: "#bbf7d0", text: "#166534" },
   CANCELLED: { bg: "#fee2e2", text: "#991b1b" },
 };
