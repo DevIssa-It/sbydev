@@ -17,9 +17,8 @@ export function BrandLogo({
   className,
   subtitle,
 }: BrandLogoProps): React.JSX.Element {
-  const bracketColor = isDark ? "#ffffff" : "#0f1114";
-  const greenAccent = "#16a34a"; // SurabayaDev Signature Green
-  const blueAccent = "#0056d2";  // Event Platform Voltage Blue
+  const bracketColor = isDark ? "var(--color-canvas)" : "var(--color-ink)";
+  const greenAccent = "var(--color-primary)";
 
   return (
     <Link
@@ -32,8 +31,8 @@ export function BrandLogo({
         className={cn(
           "w-10 h-10 rounded-[10px] flex items-center justify-center shadow-xs transition-all duration-200 group-hover:scale-105 border flex-shrink-0",
           isDark
-            ? "bg-white/10 border-white/20 text-white"
-            : "bg-[#0f172a] border-transparent text-white"
+            ? "bg-white/10 border-white/20 text-[var(--color-canvas)]"
+            : "bg-[var(--color-navy)] border-transparent text-[var(--color-canvas)]"
         )}
       >
         <svg
@@ -47,7 +46,7 @@ export function BrandLogo({
           {/* Left Code Bracket < */}
           <path
             d="M7 8L2.5 14L7 20"
-            stroke={isDark ? "#ffffff" : "#ffffff"}
+            stroke={bracketColor}
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -56,20 +55,21 @@ export function BrandLogo({
           {/* Center Stylized Surabaya Hero Monument (Tugu Pahlawan) */}
           <path
             d="M14 3.5L16.5 7.5V20.5L14 24.5L11.5 20.5V7.5L14 3.5Z"
-            fill={greenAccent}
+            fill="currentColor"
+            className="text-[var(--color-primary)]"
           />
 
           {/* Right Code Bracket > */}
           <path
             d="M21 8L25.5 14L21 20"
-            stroke={isDark ? "#ffffff" : "#ffffff"}
+            stroke={bracketColor}
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
 
           {/* Floating Event Ticket Star / Node Dot */}
-          <circle cx="14" cy="14" r="2" fill="#ffffff" />
+          <circle cx="14" cy="14" r="2" fill="var(--color-canvas)" />
         </svg>
       </div>
 
@@ -79,7 +79,7 @@ export function BrandLogo({
           <span
             className={cn(
               "font-normal tracking-tight text-left text-xl sm:text-2xl transition-colors",
-              isDark ? "text-white" : "text-[#0f1114]"
+              isDark ? "text-[var(--color-canvas)]" : "text-[var(--color-ink)]"
             )}
           >
             Surabaya<span className="font-extrabold">Dev</span>
@@ -90,8 +90,8 @@ export function BrandLogo({
             className={cn(
               "text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-[6px] shadow-2xs font-mono",
               isDark
-                ? "bg-[#16a34a] text-white border border-green-400/30"
-                : "bg-[#16a34a] text-white"
+                ? "bg-[var(--color-primary)] text-[var(--color-canvas)] border border-green-400/30"
+                : "bg-[var(--color-primary)] text-[var(--color-canvas)]"
             )}
           >
             EVENTS

@@ -30,7 +30,7 @@ export function LogoutModal({
           <button
             type="button"
             onClick={onClose}
-            className="h-12 w-full rounded-[10px] bg-[#16a34a] hover:bg-[#15803d] text-white font-semibold text-base transition-all shadow-sm cursor-pointer"
+            className="h-12 w-full rounded-[10px] bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-canvas)] font-semibold text-base transition-all shadow-sm cursor-pointer"
           >
             Kembali
           </button>
@@ -38,7 +38,7 @@ export function LogoutModal({
             type="button"
             onClick={onConfirm}
             disabled={isLoggingOut}
-            className="h-12 w-full rounded-[10px] bg-transparent border-2 border-[#16a34a] text-[var(--color-ink)] hover:bg-red-50 hover:border-red-500 hover:text-red-600 font-semibold text-base transition-all cursor-pointer"
+            className="h-12 w-full rounded-[10px] bg-transparent border-2 border-[var(--color-primary)] text-[var(--color-ink)] hover:bg-red-50 hover:border-red-500 hover:text-red-600 font-semibold text-base transition-all cursor-pointer"
           >
             {isLoggingOut ? "Memproses Logout..." : "Logout"}
           </button>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   DESIGN TOKENS — Coursera Design System
-   Semua token wajib dari DESIGN.md dan AGENTS.md §5.1
+   DESIGN TOKENS — SurabayaDev Design System
+   Semua token warna terpusat (Single Source of Truth)
    ───────────────────────────────────────────────────────────────────────── */
 @theme {
   /* Colors — SurabayaDev Official Emerald & Slate Palette */
@@ -18,6 +18,14 @@
   --color-hairline: #e2e8f0;
   --color-surface: #f0fdf4;
   --color-canvas: #ffffff;
+
+  /* Semantic Status Colors */
+  --color-success: #166534;
+  --color-success-bg: #dcfce7;
+  --color-warning: #92400e;
+  --color-warning-bg: #fef3c7;
+  --color-danger: #991b1b;
+  --color-danger-bg: #fee2e2;
 
   /* Fonts */
   --font-sans: "Source Sans Pro", Arial, sans-serif;
@@ -115,10 +123,10 @@ body {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   COMPONENT CLASSES — Button, Card, Chip (sesuai AGENTS.md §5)
+   COMPONENT CLASSES — Button, Card, Chip (Design System SSOT)
    ───────────────────────────────────────────────────────────────────────── */
 
-/* Primary button — voltage blue, 8px radius (DILARANG pill) */
+/* Primary button — 8px radius */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -154,7 +162,7 @@ body {
   background-color: var(--color-canvas);
   color: var(--color-ink);
   border-radius: var(--radius-button);
-  border: 1px solid var(--color-ink);
+  border: 1px solid var(--color-hairline);
   font-family: var(--font-sans);
   font-size: 14px;
   font-weight: 600;
@@ -193,7 +201,7 @@ body {
   overflow: hidden;
 }
 
-/* Category chip — 50px radius (DILARANG di button utama) */
+/* Category chip — 50px radius */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -228,7 +236,7 @@ body {
   font-weight: 400;
 }
 
-/* Navy callout card */
+/* Dark tech callout card */
 .callout-navy {
   background-color: var(--color-navy);
   color: var(--color-canvas);
@@ -243,7 +251,7 @@ body {
   border: none;
 }
 
-/* Skeleton loading — Pure solid pulse (Zero Gradient Compliance) */
+/* Skeleton loading — Pure solid pulse */
 .skeleton {
   background-color: var(--color-surface);
   animation: pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -277,8 +285,7 @@ body {
   padding-left: 48px !important;
 }
 .input::placeholder { color: var(--color-muted); }
-.input.error { border-color: #d30a28; }
-
+.input.error { border-color: var(--color-danger); }
 
 /* Container — Ultra-wide fluid layout with compact gutters */
 .container-app {
@@ -286,15 +293,13 @@ body {
   max-width: 1680px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 0.75rem; /* 12px mobile */
+  padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .container-app {
-    padding-left: 1rem; /* 16px desktop */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 }
-
-

@@ -43,7 +43,7 @@ export function MobileNavDrawer({
           exit={{ opacity: 0, height: 0 }}
           transition={{ duration: 0.2 }}
           className={`lg:hidden border-t px-5 py-4 overflow-hidden text-left ${
-            isDarkNav ? "bg-[#0f172a] border-white/10 text-white" : "bg-white border-[var(--color-hairline)]"
+            isDarkNav ? "bg-[var(--color-navy)] border-white/10 text-[var(--color-canvas)]" : "bg-[var(--color-canvas)] border-[var(--color-hairline)]"
           }`}
         >
           <div className="flex flex-col space-y-3 text-left">
@@ -70,7 +70,7 @@ export function MobileNavDrawer({
               {session ? (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3 text-left">
-                    <div className={`w-10 h-10 rounded-full text-sm font-bold flex items-center justify-center ${isDarkNav ? "bg-white text-[#0f172a]" : "bg-[#0f172a] text-white"}`}>
+                    <div className={`w-10 h-10 rounded-full text-sm font-bold flex items-center justify-center ${isDarkNav ? "bg-[var(--color-canvas)] text-[var(--color-navy)]" : "bg-[var(--color-navy)] text-[var(--color-canvas)]"}`}>
                       {userInitial}
                     </div>
                     <div className="text-left">
@@ -85,7 +85,7 @@ export function MobileNavDrawer({
                       onClose();
                       onOpenLogout();
                     }}
-                    className="btn-secondary h-9 px-3 text-xs text-[#d30a28]"
+                    className="btn-secondary h-9 px-3 text-xs text-[var(--color-danger)]"
                   >
                     <SignOut size={15} />
                     <span>Keluar</span>

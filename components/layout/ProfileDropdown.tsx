@@ -57,8 +57,8 @@ export function ProfileDropdown({
         aria-label="Buka Menu Akun"
         className={`w-11 h-11 rounded-full font-bold text-base flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 shadow-sm ring-2 ${
           isDarkNav
-            ? "bg-white text-[#0f172a] ring-white/40 hover:ring-white"
-            : "bg-[#0f172a] text-white ring-[var(--color-primary)]/25 hover:ring-[var(--color-primary)]"
+            ? "bg-[var(--color-canvas)] text-[var(--color-navy)] ring-white/40 hover:ring-white"
+            : "bg-[var(--color-navy)] text-[var(--color-canvas)] ring-[var(--color-primary)]/25 hover:ring-[var(--color-primary)]"
         }`}
       >
         {userInitial}
@@ -72,16 +72,16 @@ export function ProfileDropdown({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 10 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute right-0 mt-3 w-[420px] sm:w-[450px] bg-[#0f172a] text-white rounded-2xl shadow-2xl p-6 z-50 text-left border border-white/15 overflow-hidden"
+            className="absolute right-0 mt-3 w-[420px] sm:w-[450px] bg-[var(--color-navy)] text-[var(--color-canvas)] rounded-2xl shadow-2xl p-6 z-50 text-left border border-white/15 overflow-hidden"
           >
             {/* Top Header Row */}
             <div className="flex items-center justify-between gap-4 mb-4 text-left">
               <div className="flex items-center gap-3.5 text-left">
-                <div className="w-14 h-14 rounded-full bg-[#bbf7d0] text-[#065f46] font-bold text-2xl flex items-center justify-center flex-shrink-0 shadow-inner">
+                <div className="w-14 h-14 rounded-full bg-[var(--color-primary-soft)] text-[var(--color-success)] font-bold text-2xl flex items-center justify-center flex-shrink-0 shadow-inner">
                   {userInitial.slice(0, 1)}
                 </div>
                 <div className="flex flex-col text-left">
-                  <span className="font-extrabold text-lg text-white tracking-wide uppercase leading-snug">
+                  <span className="font-extrabold text-lg text-[var(--color-canvas)] tracking-wide uppercase leading-snug">
                     {userName}
                   </span>
                   <span className="text-xs text-white/80 font-medium leading-tight mt-0.5">
@@ -96,7 +96,7 @@ export function ProfileDropdown({
             </div>
 
             {/* Middle Light Surface Card Container */}
-            <div className="bg-[#f0fdf4] text-[var(--color-ink)] rounded-2xl p-5 flex flex-col gap-4 my-3 text-left border border-green-200/50">
+            <div className="bg-[var(--color-surface)] text-[var(--color-ink)] rounded-2xl p-5 flex flex-col gap-4 my-3 text-left border border-[var(--color-hairline)]">
               <div className="flex items-center gap-3.5 text-left">
                 <IdentificationCard size={24} color="var(--color-primary)" weight="bold" className="flex-shrink-0" />
                 <span className="font-mono text-sm font-extrabold text-[var(--color-ink)] tracking-wider">

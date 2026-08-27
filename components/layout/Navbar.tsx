@@ -50,8 +50,8 @@ export function Navbar(): React.JSX.Element {
         aria-label="Navigasi utama"
         className={`sticky top-0 z-40 transition-colors duration-200 ${
           isDarkNav
-            ? "bg-[#0f172a] text-white border-b border-white/10"
-            : "bg-white text-[var(--color-ink)] border-b border-[var(--color-hairline)]"
+            ? "bg-[var(--color-navy)] text-[var(--color-canvas)] border-b border-white/10"
+            : "bg-[var(--color-canvas)] text-[var(--color-ink)] border-b border-[var(--color-hairline)]"
         }`}
       >
         <div className="container-app">
@@ -59,7 +59,7 @@ export function Navbar(): React.JSX.Element {
             {/* 1. Brand Logo */}
             <BrandLogo isDark={isDarkNav} href={isAdmin ? "/admin" : "/"} />
 
-            {/* 2. Desktop Navigation Links (DRY & SSOT) */}
+            {/* 2. Desktop Navigation Links (DRY & SSOT via CSS variables) */}
             <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {navLinks.map((item) => {
                 if (item.adminOnly && !isAdmin) return null;
@@ -87,7 +87,7 @@ export function Navbar(): React.JSX.Element {
                       className={`absolute bottom-0 left-0 h-[3px] rounded-full transition-all duration-300 ${
                         active
                           ? isDarkNav
-                            ? "w-full bg-[#22c55e]"
+                            ? "w-full bg-[var(--color-primary)]"
                             : "w-full bg-[var(--color-primary)]"
                           : isDarkNav
                           ? "w-0 group-hover:w-full bg-white/70"
@@ -112,7 +112,7 @@ export function Navbar(): React.JSX.Element {
                 <div className="flex items-center gap-3">
                   <Link
                     href="/login"
-                    className="h-11 px-6 text-base font-semibold rounded-[10px] bg-[#16a34a] hover:bg-[#15803d] text-white inline-flex items-center justify-center no-underline transition-all hover:scale-105 shadow-sm"
+                    className="h-11 px-6 text-base font-semibold rounded-[10px] bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-[var(--color-canvas)] inline-flex items-center justify-center no-underline transition-all hover:scale-105 shadow-sm"
                   >
                     Login
                   </Link>
@@ -121,7 +121,7 @@ export function Navbar(): React.JSX.Element {
                     className={`h-11 px-6 text-base font-semibold rounded-[10px] border-2 inline-flex items-center justify-center no-underline transition-all hover:scale-105 ${
                       isDarkNav
                         ? "border-white/80 text-white hover:bg-white/10"
-                        : "border-[#16a34a] text-[#16a34a] hover:bg-[#f0fdf4]"
+                        : "border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-surface)]"
                     }`}
                   >
                     Sign Up
