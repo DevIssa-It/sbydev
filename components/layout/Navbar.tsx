@@ -102,17 +102,12 @@ export function Navbar(): React.JSX.Element {
             <BrandLogo isDark={isDarkNav} href={isAdmin ? "/admin" : "/"} />
 
             {/* 2. Navigation Center with Color Shift & Animated Bottom Indicator */}
-            <div className="hidden lg:flex items-center space-x-10">
+            <div className="hidden lg:flex items-center space-x-7 xl:space-x-9">
               {isAdminRoute ? (
                 <>
                   <Link href="/admin" className={navItemClass(pathname === "/admin")}>
-                    <span>Home</span>
+                    <span>Konsol Admin</span>
                     <span className={indicatorClass(pathname === "/admin")} />
-                  </Link>
-
-                  <Link href="/admin" className={navItemClass(false)}>
-                    <span>My Events</span>
-                    <span className={indicatorClass(false)} />
                   </Link>
 
                   <Link href="/admin/events/new" className={navItemClass(pathname === "/admin/events/new")}>
@@ -121,38 +116,48 @@ export function Navbar(): React.JSX.Element {
                   </Link>
 
                   <Link href="/admin/scanner" className={navItemClass(pathname === "/admin/scanner")}>
-                    <span>Check-In</span>
+                    <span>Scanner Check-In</span>
                     <span className={indicatorClass(pathname === "/admin/scanner")} />
                   </Link>
 
                   <Link href="/" className={navItemClass(false)}>
-                    <span>Public Events</span>
+                    <span>Katalog Publik</span>
                     <span className={indicatorClass(false)} />
                   </Link>
                 </>
               ) : (
                 <>
-                  <Link href="/" className={navItemClass(pathname === "/")}>
+                  <Link href="/" className={navItemClass(pathname === "/" && !pathname.includes("#"))}>
                     <span>Home</span>
-                    <span className={indicatorClass(pathname === "/")} />
+                    <span className={indicatorClass(pathname === "/" && !pathname.includes("#"))} />
                   </Link>
 
-                  {session && (
-                    <Link href="/tickets" className={navItemClass(pathname?.startsWith("/tickets") || false)}>
-                      <span>My Events</span>
-                      <span className={indicatorClass(pathname?.startsWith("/tickets") || false)} />
-                    </Link>
-                  )}
-
                   <Link href="/#daftar-event" className={navItemClass(false)}>
-                    <span>Public Events</span>
+                    <span>Katalog Event</span>
+                    <span className={indicatorClass(false)} />
+                  </Link>
+
+                  <Link href="/#how-it-works" className={navItemClass(false)}>
+                    <span>Cara Kerja</span>
                     <span className={indicatorClass(false)} />
                   </Link>
 
                   <Link href="/#community" className={navItemClass(false)}>
-                    <span>About Us</span>
+                    <span>Komunitas</span>
                     <span className={indicatorClass(false)} />
                   </Link>
+
+                  <Link href="/#faq" className={navItemClass(false)}>
+                    <span>FAQ</span>
+                    <span className={indicatorClass(false)} />
+                  </Link>
+
+                  {session && (
+                    <Link href="/tickets" className={navItemClass(pathname?.startsWith("/tickets") || false)}>
+                      <span>Tiket Saya</span>
+                      <span className={indicatorClass(pathname?.startsWith("/tickets") || false)} />
+                    </Link>
+                  )}
 
                   {isAdmin && (
                     <Link href="/admin" className={navItemClass(false)}>
@@ -316,14 +321,7 @@ export function Navbar(): React.JSX.Element {
                       onClick={() => setMobileOpen(false)}
                       className="text-base font-semibold text-white no-underline py-1"
                     >
-                      Home
-                    </Link>
-                    <Link
-                      href="/admin"
-                      onClick={() => setMobileOpen(false)}
-                      className="text-base font-semibold text-white/80 hover:text-white no-underline py-1"
-                    >
-                      My Events
+                      Konsol Admin
                     </Link>
                     <Link
                       href="/admin/events/new"
@@ -337,14 +335,14 @@ export function Navbar(): React.JSX.Element {
                       onClick={() => setMobileOpen(false)}
                       className="text-base font-semibold text-white/80 hover:text-white no-underline py-1"
                     >
-                      Check-In
+                      Scanner Check-In
                     </Link>
                     <Link
                       href="/"
                       onClick={() => setMobileOpen(false)}
                       className="text-sm text-white/60 hover:text-white no-underline py-1"
                     >
-                      Public Events
+                      Katalog Publik
                     </Link>
                   </>
                 ) : (
@@ -356,29 +354,52 @@ export function Navbar(): React.JSX.Element {
                     >
                       Home
                     </Link>
-                    {session && (
-                      <Link
-                        href="/tickets"
-                        onClick={() => setMobileOpen(false)}
-                        className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
-                      >
-                        My Events
-                      </Link>
-                    )}
                     <Link
                       href="/#daftar-event"
                       onClick={() => setMobileOpen(false)}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
-                      Public Events
+                      Katalog Event
+                    </Link>
+                    <Link
+                      href="/#how-it-works"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
+                    >
+                      Cara Kerja
                     </Link>
                     <Link
                       href="/#community"
                       onClick={() => setMobileOpen(false)}
                       className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
                     >
-                      About Us
+                      Komunitas
                     </Link>
+                    <Link
+                      href="/#faq"
+                      onClick={() => setMobileOpen(false)}
+                      className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
+                    >
+                      FAQ
+                    </Link>
+                    {session && (
+                      <Link
+                        href="/tickets"
+                        onClick={() => setMobileOpen(false)}
+                        className="text-base font-semibold text-[var(--color-ink)] no-underline py-1"
+                      >
+                        Tiket Saya
+                      </Link>
+                    )}
+                    {isAdmin && (
+                      <Link
+                        href="/admin"
+                        onClick={() => setMobileOpen(false)}
+                        className="text-base font-semibold text-[var(--color-primary)] no-underline py-1"
+                      >
+                        Panel Admin
+                      </Link>
+                    )}
                   </>
                 )}
 
