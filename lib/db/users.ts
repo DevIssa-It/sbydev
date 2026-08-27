@@ -55,3 +55,14 @@ export async function getAllUsers() {
   });
   return users;
 }
+
+/** Update profil user */
+export async function updateUserProfile(id: string, data: { name?: string }) {
+  const user = await prisma.user.update({
+    where: { id },
+    data,
+  });
+  const { password: _, ...safeUser } = user;
+  return safeUser;
+}
+
