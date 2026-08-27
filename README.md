@@ -5,6 +5,18 @@
 
 ---
 
+### 🌐 Tautan Live Demo & Repository
+- **Live Demo Production**: [https://sbydev.vercel.app/](https://sbydev.vercel.app/)
+- **GitHub Repository**: [https://github.com/DevIssa-It/sbydev](https://github.com/DevIssa-It/sbydev)
+
+### 🔑 Akun Demo Pengujian (Seed Data):
+| Role | Email | Password | Akses Fitur |
+|---|---|---|---|
+| **Admin Panitia** | `admin@sbydev.id` | `adminpassword123` | Konsol Admin, CRUD Event, Scanner Check-In, Rekap Kehadiran |
+| **Peserta User** | `user@sbydev.id` | `userpassword123` | Registrasi Event, E-Tiket Digital, QR Code Dinamis, Edit Profil |
+
+---
+
 ## 1. Ringkasan & Solusi Studi Kasus
 
 Aplikasi ini dirancang untuk menjawab seluruh tantangan teknis dalam studi kasus platform event komunitas, mencakup manajemen kuota saat *high concurrency traffic*, penerbitan tiket digital dengan kode unik QR, sistem validasi check-in panitia di lokasi acara, dan pemisahan hak akses antara admin organizer dan peserta.
