@@ -12,7 +12,7 @@ interface ScannerEventBannerProps {
 
 export function ScannerEventBanner({ event }: ScannerEventBannerProps): React.JSX.Element {
   return (
-    <div className="card p-6 sm:p-7 mb-7 bg-[var(--color-navy)] text-white rounded-2xl border-0 shadow-md relative overflow-hidden text-left">
+    <div className="rounded-2xl p-6 sm:p-7 mb-7 bg-[var(--color-navy)] text-white shadow-md relative overflow-hidden text-left">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
         <div className="flex items-center gap-4">
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-white/10 overflow-hidden flex-shrink-0 border border-white/20">

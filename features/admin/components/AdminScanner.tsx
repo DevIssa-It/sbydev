@@ -106,7 +106,7 @@ export function AdminScanner(): React.JSX.Element {
           <Badge variant="tag">LANGKAH 1 DARI 2</Badge>
         </div>
 
-        <div className="card p-8 sm:p-10 mb-8 bg-[var(--color-navy)] text-[var(--color-canvas)] border-0 shadow-sm">
+        <div className="rounded-2xl p-8 sm:p-10 mb-8 bg-[var(--color-navy)] text-white shadow-sm">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-xs font-semibold mb-3 text-[#86efac] border border-white/20">
             <Sparkle size={14} weight="fill" />
             <span>Meja Registrasi & Scanner Tiket</span>
